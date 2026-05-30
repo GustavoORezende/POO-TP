@@ -1,16 +1,26 @@
+from datetime import datetime
+
 class User:
     def __init__(self, nome, sobrenome, email, senha):
 
-        self.nome = nome
-        self.sobrenome = sobrenome
-        self.email = email
-        self.senha = senha
+        self.__nome = nome
+        self.__sobrenome = sobrenome
+        self.__email = email
+        self.__senha = senha
 
     def getNome(self):
         return self.__nome
     
     def getSobrenome(self):
         return self.__sobrenome
+    
+    def toDict(self):
+        return {
+            "nome": self.__nome,
+            "sobrenome": self.__sobrenome,
+            "email": self.__email,
+            "senha": self.__senha
+        }
     
 class Post:
     def __init__(self, user, texto):
