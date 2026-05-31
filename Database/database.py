@@ -37,8 +37,21 @@ class BancoDeDados:
         except Exception as e:
             print(f"Erro ao salvar: {e}")
             return False
-            
-        
+
+    def verificarLogin(self, email, senha):
+        if self.file.exists():
+            try:
+                with open(self.file, 'r', encoding='utf-8') as arquivo:
+                    usuarios = json.load(arquivo)
+                
+                    for u in usuarios:
+                        if u.get("email") == email and u.get("senha") == senha:
+                            return u
+                    
+            except json.JSONDecodeError:
+                pass
+
+        return None
 
 class Feed:
     def __init__(self, file="feed.json"):
@@ -73,3 +86,29 @@ class Feed:
             except json.JSONDecodeError:
                 return [] # Retorna vazio se o arquivo existir mas estiver quebrado
         return [] # Retorna vazio se o arquivo ainda não existir
+
+    def atualizarInteracao(self, post_id, acao, conteudo=None):
+        """Busca um post pelo ID e adiciona uma curtida ou comentário."""
+        posts = self.lerPosts()
+        alterou = False
+        
+        # Procura qual post tem o ID que o botão enviou
+        for p in posts:
+            if p.get("id") == post_id:
+                if acao == "curtir":
+                    p["curtidas"] += 1
+                    alterou = True
+                elif acao == "comentar" and conteudo:
+                    p["comentarios"].append(conteudo)
+                    alterou = True
+                break # Achou o post, pode parar de procurar
+
+        # Se encontrou e alterou, salva o JSON novamente
+        if alterou:
+            try:
+                with open(self.__file, 'w', encoding='utf-8') as arquivo:
+                    json.dump(posts, arquivo, indent=4, ensure_ascii=False)
+                return True
+            except Exception as e:
+                print(f"Erro ao atualizar post: {e}")
+                return False

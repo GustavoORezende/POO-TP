@@ -1,5 +1,5 @@
 from datetime import datetime
-
+import uuid
 class User:
     def __init__(self, nome, sobrenome, email, senha):
 
@@ -24,6 +24,7 @@ class User:
     
 class Post:
     def __init__(self, user, texto):
+        self.id = str(uuid.uuid4())
         self.autor = {
             "nome": user.getNome(),
             "sobrenome": user.getSobrenome()
@@ -35,6 +36,7 @@ class Post:
 
     def toDict(self):
         return{
+            "id": self.id,
             "autor": self.autor,
             "texto": self.texto,
             "curtidas": self.__curtidas,

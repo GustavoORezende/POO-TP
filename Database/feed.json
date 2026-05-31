@@ -1,34 +1,26 @@
 [
     {
+        "id": "971b82cd-ada5-432f-814b-0157f05cb8d0",
         "autor": {
             "nome": "Ana",
             "sobrenome": "Lafaiete"
         },
-        "texto": "Primeira publicacao do feed",
+        "texto": "primeiro post",
         "curtidas": 1,
         "comentarios": [
-            "Primeiro Comentario!"
+            "Ana: curti meu próprio post"
         ],
-        "data": "12/05/2026 20:05"
+        "data": "31/05/2026 15:08"
     },
     {
+        "id": "b689712d-ce52-4fa3-a290-9379652d455b",
         "autor": {
-            "nome": "teste",
-            "sobrenome": "teste"
+            "nome": "Ana",
+            "sobrenome": "Banana"
         },
-        "texto": "segunda",
+        "texto": "login funcionando",
         "curtidas": 0,
         "comentarios": [],
-        "data": "30/05/2026 18:22"
-    },
-    {
-        "autor": {
-            "nome": "teste",
-            "sobrenome": "teste"
-        },
-        "texto": "terceira",
-        "curtidas": 0,
-        "comentarios": [],
-        "data": "30/05/2026 18:22"
+        "data": "31/05/2026 20:08"
     }
 ]
